@@ -1,0 +1,6 @@
+version: '2'
+services:
+  restapiexample-app:
+    image: restapiexample
+    ports:
+      - 80:80

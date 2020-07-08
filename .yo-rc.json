@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "nativeLanguage": "pt-br"
+    },
+    "namespace": "Compuletra.RestApiExample",
+    "databaseType": "sqllite",
+    "prodDatabaseType": "mysql",
+    "jhipsterVersion": "6.9.1",
+    "creationTimestamp": 1594218972091,
+    "applicationType": "microservice",
+    "baseName": "restapiexample",
+    "testFrameworks": ["gatling", "cucumber"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-dotnetcore",
+        "version": "1.0.0"
+      },
+      {
+        "name": "generator-jhipster-ansible",
+        "version": "0.3.0"
+      }
+    ],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "pt-br",
+    "languages": ["pt-br", "en"],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-dotnetcore",
+        "version": "1.0.0"
+      }
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
