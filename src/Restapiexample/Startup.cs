@@ -21,13 +21,14 @@ namespace Compuletra.RestApiExample {
 
         private IConfiguration Configuration { get; }
 
-        public virtual void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services, JHipsterSettings jhipsterSettings)
         {
             services
             .AddNhipsterModule(Configuration);
 
             AddDatabase(services);
 
+            // var jhipsterSettings = services.BuildServiceProvider().GetRequiredService<IOptions<JHipsterSettings>>();
 
             services
             .AddSecurityModule(jhipsterSettings)
@@ -47,7 +48,7 @@ namespace Compuletra.RestApiExample {
                 .UseApplicationProblemDetails()
                 .UseApplicationWeb(env)
                 .UseApplicationSwagger()
-                .UseApplicationDatabase(serviceProvider, env)                
+                .UseApplicationDatabase(serviceProvider, env);    
         }
 
         protected virtual void AddDatabase(IServiceCollection services)
