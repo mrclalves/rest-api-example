@@ -43,7 +43,7 @@ local.properties
 # VSCode
 ######################
 /bin/
-obj/
+/obj/
 
 # External tool builders
 .externalToolBuilders/**

@@ -21,17 +21,17 @@ namespace Compuletra.RestApiExample {
 
         private IConfiguration Configuration { get; }
 
-        public virtual void ConfigureServices(IServiceCollection services, JHipsterSettings jhipsterSettings)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             services
             .AddNhipsterModule(Configuration);
 
             AddDatabase(services);
 
-            // var jhipsterSettings = services.BuildServiceProvider().GetRequiredService<IOptions<JHipsterSettings>>();
+            var jhipsterSettings = services.BuildServiceProvider().GetRequiredService<IOptions<JHipsterSettings>>();
 
             services
-            .AddSecurityModule(jhipsterSettings)
+            .AddSecurityModule(jhipsterSettings.Value)
             .AddProblemDetailsModule()
             .AddAutoMapperModule()
             .AddWebModule()

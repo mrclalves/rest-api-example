@@ -23,9 +23,9 @@ namespace Compuletra.RestApiExample.Test.Setup
             base.Configure(app, env, serviceProvider, context, jhipsterSettingsOptions);
         }
 
-        public override void ConfigureServices(IServiceCollection services, JHipsterSettings jhipsterSettings)
+        public override void ConfigureServices(IServiceCollection services)
         {
-            base.ConfigureServices(services, jhipsterSettings);
+            base.ConfigureServices(services);
         }
 
         protected override void AddDatabase(IServiceCollection services)
