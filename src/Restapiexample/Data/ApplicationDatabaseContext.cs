@@ -10,6 +10,8 @@ namespace Compuletra.RestApiExample.Data {
         {
         }
 
+        public DbSet<Veiculo> Veiculos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

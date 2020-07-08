@@ -1,0 +1,23 @@
+entity Veiculo {
+    placa String maxlength(10) required
+    cor String maxlength(50) required
+    tipo String maxlength(50) required
+}
+
+
+/** # CONFIGURATION */
+/** ## DTO */
+/** dto * with mapstruct */
+dto * with mapstruct  
+
+paginate Veiculo  with pagination
+
+paginate Veiculo with infinite-scroll
+
+filter Veiculo
+
+/** search Cemiterio, Falecido, Pessoa with */ 
+
+
+/** ## SERVICE -  Set service options to all */
+service Veiculo  with serviceClass
