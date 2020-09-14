@@ -47,7 +47,7 @@ namespace Compuletra.RestApiExample {
                 .UseApplicationSecurity(jhipsterSettings)
                 .UseApplicationProblemDetails()
                 .UseApplicationWeb(env)
-                .UseApplicationSwagger()
+                .UseApplicationSwagger(Configuration)
                 .UseApplicationDatabase(serviceProvider, env);    
         }
 

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
@@ -14,11 +15,17 @@ namespace Compuletra.RestApiExample.Infrastructure {
             return @this;
         }
 
-        public static IApplicationBuilder UseApplicationSwagger(this IApplicationBuilder @this)
+        public static IApplicationBuilder UseApplicationSwagger(this IApplicationBuilder @this, IConfiguration configuration)
         {
-            @this.UseSwagger();
-            @this.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Restapiexample API");
+            @this.UseSwagger(c =>
+            {
+                c.RouteTemplate = "{documentName}/api-docs";
+                c.SerializeAsV2 = true;
+            });
+            @this.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/v2/api-docs", configuration["spring:application:name"]);
+                c.RoutePrefix = string.Empty;
             });
             return @this;
         }
