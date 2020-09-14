@@ -19,6 +19,9 @@ namespace Compuletra.RestApiExample.Models {
         [Required]
         public string Tipo { get; set; }
 
+        [Required]
+        public string Marca { get; set; }
+
         // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
         public override bool Equals(object obj)
@@ -42,6 +45,7 @@ namespace Compuletra.RestApiExample.Models {
                     $", Placa='{Placa}'" +
                     $", Cor='{Cor}'" +
                     $", Tipo='{Tipo}'" +
+                    $", Marca='{Marca}'" +
                     "}";
         }
     }

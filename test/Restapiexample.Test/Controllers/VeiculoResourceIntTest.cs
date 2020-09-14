@@ -31,6 +31,9 @@ namespace Compuletra.RestApiExample.Test.Controllers {
         private const string DefaultTipo = "AAAAAAAAAA";
         private const string UpdatedTipo = "BBBBBBBBBB";
 
+        private const string DefaultMarca = "AAAAAAAAAA";
+        private const string UpdatedMarca = "BBBBBBBBBB";
+
         private readonly NhipsterWebApplicationFactory<TestStartup> _factory;
         private readonly HttpClient _client;
 
@@ -43,7 +46,8 @@ namespace Compuletra.RestApiExample.Test.Controllers {
             return new Veiculo {
                 Placa = DefaultPlaca,
                 Cor = DefaultCor,
-                Tipo = DefaultTipo
+                Tipo = DefaultTipo,
+                Marca = DefaultMarca
             };
         }
 
@@ -68,6 +72,7 @@ namespace Compuletra.RestApiExample.Test.Controllers {
             testVeiculo.Placa.Should().Be(DefaultPlaca);
             testVeiculo.Cor.Should().Be(DefaultCor);
             testVeiculo.Tipo.Should().Be(DefaultTipo);
+            testVeiculo.Marca.Should().Be(DefaultMarca);
         }
 
         [Fact]
@@ -136,6 +141,22 @@ namespace Compuletra.RestApiExample.Test.Controllers {
         }
 
         [Fact]
+        public async Task CheckMarcaIsRequired()
+        {
+            var databaseSizeBeforeTest = _applicationDatabaseContext.Veiculos.Count();
+
+            // Set the field to null
+            _veiculo.Marca = null;
+
+            // Create the Veiculo, which fails.
+            var response = await _client.PostAsync("/api/veiculos", TestUtil.ToJsonContent(_veiculo));
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var veiculoList = _applicationDatabaseContext.Veiculos.ToList();
+            veiculoList.Count().Should().Be(databaseSizeBeforeTest);
+        }
+
+        [Fact]
         public async Task GetAllVeiculos()
         {
             // Initialize the database
@@ -151,6 +172,7 @@ namespace Compuletra.RestApiExample.Test.Controllers {
             json.SelectTokens("$.[*].placa").Should().Contain(DefaultPlaca);
             json.SelectTokens("$.[*].cor").Should().Contain(DefaultCor);
             json.SelectTokens("$.[*].tipo").Should().Contain(DefaultTipo);
+            json.SelectTokens("$.[*].marca").Should().Contain(DefaultMarca);
         }
 
         [Fact]
@@ -169,6 +191,7 @@ namespace Compuletra.RestApiExample.Test.Controllers {
             json.SelectTokens("$.placa").Should().Contain(DefaultPlaca);
             json.SelectTokens("$.cor").Should().Contain(DefaultCor);
             json.SelectTokens("$.tipo").Should().Contain(DefaultTipo);
+            json.SelectTokens("$.marca").Should().Contain(DefaultMarca);
         }
 
         [Fact]
@@ -195,6 +218,7 @@ namespace Compuletra.RestApiExample.Test.Controllers {
             updatedVeiculo.Placa = UpdatedPlaca;
             updatedVeiculo.Cor = UpdatedCor;
             updatedVeiculo.Tipo = UpdatedTipo;
+            updatedVeiculo.Marca = UpdatedMarca;
 
             var response = await _client.PutAsync("/api/veiculos", TestUtil.ToJsonContent(updatedVeiculo));
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -206,6 +230,7 @@ namespace Compuletra.RestApiExample.Test.Controllers {
             testVeiculo.Placa.Should().Be(UpdatedPlaca);
             testVeiculo.Cor.Should().Be(UpdatedCor);
             testVeiculo.Tipo.Should().Be(UpdatedTipo);
+            testVeiculo.Marca.Should().Be(UpdatedMarca);
         }
 
         [Fact]

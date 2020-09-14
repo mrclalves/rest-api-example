@@ -2,6 +2,7 @@ entity Veiculo {
     placa String maxlength(10) required
     cor String maxlength(50) required
     tipo String maxlength(50) required
+    marca String maxlength(50) required
 }
 
 
